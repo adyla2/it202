@@ -50,10 +50,6 @@
           mapTypeId: 'satellite'
         });
         
-        //heatmap = new google.maps.visualization.HeatmapLayer({
-          //data: getData(),
-          //map: map
-        //});
         getData();
         
       }
@@ -72,8 +68,7 @@
             $.each(data, function(i,v) {
             points.push(new google.maps.LatLng(v.latitude, v.longitude));
             });
-            console.log(points[45].lat())
-            //drawChart(points);
+            //console.log(points[45].lat())
           });
           
           heatmap = new google.maps.visualization.HeatmapLayer({
@@ -81,20 +76,6 @@
           map: map
         });
       }
-      
-      // Callback that creates and populates a data table,
-      // instantiates the table, passes in the data and
-      // draws it.
-      /*function drawChart(points) {   
-        //$.each(apiData, function(i,v) {
-            //points.push(new google.maps.LatLng(v.latitude, v.longitude));
-            //});
-        //console.log(points[50].lat())
-        heatmap = new google.maps.visualization.HeatmapLayer({
-          data: points,
-          map: map
-        });
-      }*/
       
       
     </script>
