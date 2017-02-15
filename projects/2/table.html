@@ -1,6 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 95%;
+        width: 65%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 85%;
+        width: 65%;
+        margin: 50;
+        padding: 50;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        z-index: 10;
+        background-color: #fff;
+        padding: 15px;
+        border: 3px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 90px;
+        padding-left: 30px;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 10px solid #999;
+        left: 50%;
+        padding: 15px;
+        position: absolute;
+        top: 15px;
+        z-index: 10;
+      }
+    </style>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -24,22 +61,39 @@
             }
           }).done(function(data) {
             console.log(data);
+            drawTable(data);
+          });
+          
+        $.ajax({
+            url: url,
+            method: 'GET',
+            data: {
+              $select: "community_area, count(status)",
+              $where: "status in('Open')",
+              $group: "community_area",
+              $order: "count(status)",
+            }
+          }).done(function(data) {
+            console.log(data);
             drawChart(data);
           });     
-
       }
-
+      
+      
 
       // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['table']});
-
+      google.charts.load('current', {'packages':['table', 'corechart']});
+      // Load the Visualization API and the corechart package.
+      //google.charts.load('current', {'packages':['corechart']});
+      
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(getData);
+
 
       // Callback that creates and populates a data table,
       // instantiates the table, passes in the data and
       // draws it.
-      function drawChart(apiData) {   
+      function drawTable(apiData) {   
 
         // Create the data table.
         var data = new google.visualization.DataTable();
@@ -61,9 +115,70 @@
         table.draw(data, options);
       }
       
+      function drawChart(apiData) {   
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'community area #');
+        data.addColumn('number', '# of open potholes');
+        
+        
+        $.each(apiData, function(i,v) {
+          data.addRow([v.community_area, parseFloat(v.count_status)]);
+        })
+        
+        // Set chart options
+        var options = {'title':'Chicago Total Number of Potholes by Community Area',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+      
     </script>
+    <script type="text/javascript">
+      var points=[];
+      var map, heatmap;
+      
+      function initMap (){
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat:41.8781 , lng:-87.6298 },
+          mapTypeId: 'satellite'
+        });
+        
+       // getData();
+        var url = "https://data.cityofchicago.org/resource/787j-mys9.json";
+        
+        $.ajax({
+            url: url,
+            method: 'GET',
+            data: {
+              $select: "latitude, longitude",
+              $where: "status in('Open')",
+            }
+          }).done(function(data) {
+            $.each(data, function(i,v) {
+            points.push(new google.maps.LatLng(v.latitude, v.longitude));
+            });
+          });
+          
+            heatmap = new google.maps.visualization.HeatmapLayer({
+              data: points,
+              map: map
+            });
+      }
+    </script>
+    
   </head>
   <body>
     <div id="table_div"></div>
+    <div id="chart_div"></div>
+    <div id="map"></div>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0K6p4AYbqGzLw4mw7vPIAMIPEIoHHcDs&libraries=visualization&callback=initMap">
+    </script>
   </body>
 </html>
