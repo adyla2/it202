@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sample Example!</title>
+        <style>
+            canvas {
+              background: #001E62;
+            }
+            
+        </style>
+    </head>
+                      
+    <body>
+    <canvas id = "canvas1" width="500" height="300"></canvas> <!--Adds canvas element to the body of html page -->
+    <canvas id = "canvas2" width = "500" height = "300"></canvas>
+    <script>
+        var circleX = 250; 
+        var toggle = true;
+        
+        document.addEventListener("keydown", function(e){
+            if(e.keyCode == 88)
+                clear();
+            
+            else if(e.keyCode ==85)
+                draw();
+            
+        });
+        
+        
+        
+        function draw(){
+            var c = document.getElementById("canvas1");
+            var ctx = c.getContext("2d");
+            var x = c.width/2;
+            var y = c.height/2;
+            var radius = 140;
+            ctx.font = "100px Helvetica";
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = ' #D50032';
+            ctx.fill();
+            ctx.closePath();
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#ffffff"
+            ctx.fillText("AD",x,y);
+            ctx.font = "50px Arial";
+            ctx.fillText("UIC", x, y+75);
+        }
+        
+        function clear() {
+            var c = document.getElementById("canvas2");
+            var ctx = c.getContext("2d");
+            ctx.clearRect(0,0, c.width, c.height);
+        }
+        
+        function drawCircle(){
+            clear();
+            
+            if (toggle){
+                circleX++;
+            }
+            else
+                circleX--;
+                
+            if(circleX == 450){
+                toggle = false;
+            }
+            else if (circleX == 50)
+                toggle = true;
+            
+            var c2 = document.getElementById("canvas2");
+            var ctx= c2.getContext("2d");
+            var x = c2.width/2;
+            var y = c2.height/2;
+            var radius = 50;
+            
+            ctx.beginPath();
+            ctx.arc(circleX, y, radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = ' #D50032';
+            ctx.fill();
+            requestAnimationFrame(drawCircle);
+            
+        }
+        
+        requestAnimationFrame(drawCircle);
+        
+    </script>
+    </body> 
+</html>
