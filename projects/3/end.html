@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sample Example!</title>
+        <style>
+            body {
+              background-image: url("http://www.designbolts.com/wp-content/uploads/2014/09/2014_halloween_night_Wallpaper_HD.jpg");
+            }
+                
+        </style>
+    </head>
+                      
+    <body>
+    <canvas id="canvas" ></canvas></canvas> <!--Adds canvas element to the body of html page -->
+    <script>
+            var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+            var x = c.width/2;
+            var y = c.height/2;
+            ctx.textAlign = "center";
+            ctx.font = "100px Gypsy Curse";
+            ctx.fillStyle = 'red';
+            ctx.fillText("END GAME",x,y);
+            ctx.fillText("ALL LIVES WERE LOST",x,y+75);
+            
+    </script>
+    </body> 
+</html>

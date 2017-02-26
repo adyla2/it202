@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sample Example!</title>
+        <style>
+          html{ 
+              background: url("http://www.designbolts.com/wp-content/uploads/2014/09/2014_halloween_night_Wallpaper_HD.jpg") no-repeat center center fixed; 
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover;
+            }
+            canvas{
+                margin: 0px;
+            }
+            
+        
+           
+        </style>
+    </head>
+                      
+    <body>
+       
+        <canvas id = "canvas"></canvas>
+    <script>
+        var c = document.getElementById("canvas");
+        var ctx = c.getContext("2d");
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+        
+        
+        var player_image = new Image();
+        player_image.src = 'https://s3.amazonaws.com/gameartpartnersimagehost/wp-content/uploads/2016/03/Brain-Exposed-Zombie-Royalty-Free-Game-Art.png'
+       
+        var Harm_image = new Image();
+        Harm_image.src = 'http://www.free-icons-download.net/images/jack-o-lantern-icons-21143.png';
+        
+        var Benefit_image = new Image();
+        Benefit_image.src = 'http://clipartmonk.com/content/uploads/br/brain_1color_vector_clipart.png';
+        
+        
+        var score=0;
+        var player = {x: 0, y: 0, lives: 5};
+        
+        var harm;
+        var benefit;
+        
+        var arr = [];
+        
+        function updateGame(){
+            clear();
+            drawPlayer();
+            drawObject();
+            
+            ctx.font = "65px Gypsy Curse";
+            ctx.fillStyle = "red";
+            ctx.fillText("Score: " + score, c.width-200, 100);
+            ctx.fillText("Lives: " + player.lives, c.width-200, 65);
+    
+            requestAnimationFrame(updateGame);
+        };
+        
+        function drawPlayer(){
+            ctx.drawImage(player_image, player.x, player.y,200,200); 
+           
+        };
+        
+         function clear() {
+            ctx.clearRect(0,0, c.width, c.height);
+        }
+        
+        function drawObject(){
+            for(var i = 0; i<= 4; i++){
+                arr[i].x -= arr[i].v;
+                if(arr[i].x < 0 - 150){
+                    reset(arr[i]);
+                }
+               
+                if((arr[i].y >= player.y) && (arr[i].y <= player.y + 200)){
+                    if(arr[i].x >= player.x && arr[i].x <= player.x + 200){
+                        if(arr[i].harm){
+                            if(score == 0){
+                                score=score;
+                            }
+                            else{
+                                score--;
+                            }
+                            player.lives--;
+                            if(player.lives == 0){
+                                window.location.assign("end.html")
+                            }
+                            reset(arr[i]);
+                        }
+                    
+                        else{
+                            score++;
+                            reset(arr[i]);
+                            if(score == 15){
+                                window.location.assign("won.html")
+                            }
+                        }    
+                    }
+                }
+                
+                if(arr[i].harm){
+                    ctx.drawImage(Harm_image,arr[i].x , arr[i].y, 75, 75) ;
+                }
+                
+                else{
+                    ctx.drawImage(Benefit_image, arr[i].x, arr[i].y, 75, 75);
+                }
+            }
+        };
+        
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        
+        function setUp(){
+            
+            for(var i =0; i <= 4; i++){
+                var y = getRandomInt(0, c.height - 100);
+                var x = c.width + 100;
+                var v = getRandomInt(1,6);
+                harm = {x: x, y:y, v:v, harm: i < 2};
+                arr.push(harm); 
+            }           
+        };
+        
+        function reset(Obj){
+                Obj.x = c.width + 100;
+                Obj.v = getRandomInt(3,10);
+                Obj.y = getRandomInt(0, c.height - 100);
+        };
+        
+        
+        setUp();
+        requestAnimationFrame(updateGame);
+        
+        document.addEventListener("keydown", function(e){
+            if(e.keyCode == 38)  //38 is up arrow 
+                player.y -=10;
+                if(player.y < 0){
+                    player.y = 0;
+                }
+                
+            if(e.keyCode ==40){   //40 is down arrow 
+                player.y+=10
+                if(player.y + 200 > c.height){
+                    player.y = c.height - 200;
+                }
+            }
+        });
+        
+        
+      
+        
+    </script>
+    </body> 
+</html>

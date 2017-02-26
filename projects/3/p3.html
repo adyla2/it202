@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Sample Example!</title>
+        <style>
+            body {
+              background-image: url("http://www.designbolts.com/wp-content/uploads/2014/09/2014_halloween_night_Wallpaper_HD.jpg");
+            }
+            button{
+                font: 60px "Gypsy Curse";
+                background: #000000;
+                color: #FF4500;
+                position: relative;
+                top: 50%;
+                left: 50%;
+                right: 50%;
+                bottom: 50%;
+            }
+            div{
+                 text-align: center;
+            }
+                
+        </style>
+    </head>
+                      
+    <body>
+        <button id="myButton" onclick="return newDoc()">Click to START</button>
+    <canvas id="canvas"> <!--Adds canvas element to the body of html page --></canvas>
+    <script>
+        function newDoc() {
+            window.location.assign("playgame.html")
+        }
+        
+        var c = document.getElementById("canvas");
+        var ctx = c.getContext("2d");
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+        var x = c.width/2;
+        var y = c.height/2;
+        ctx.textAlign = "center";
+        ctx.font = "90px Gypsy Curse";
+        ctx.fillStyle = 'red';
+        ctx.fillText("INSTRUCTIONS: ",x, y);
+        ctx.fillText("Move the zombie up and down.", x, y+75)
+        ctx.fillText("Pumpkins are harmful! Lives will be lost.", x, y+(75*2))
+        ctx.fillText("Brains are good for you. Your score will increase.", x, y+(75*3))
+        
+    </script>
+    </body> 
+</html>
