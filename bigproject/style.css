@@ -1,0 +1,22 @@
+.mdl-card__title {
+    font-size: 24px;
+}
+
+.mdl-card__supporting-text {
+    font-size: 14px; 
+    font-family: Arial; 
+    font-weight: bold; 
+    color: #000;
+}
+
+.mdl-card__media {
+    background-color: #fff;
+    
+}
+
+.p{
+    font-size: 14px; 
+    font-family: Arial; 
+    font-weight: bold; 
+    color: #000;
+}
