@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>React React React!</title>
+        
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        
+        <style>
+            #container {
+                paddign: 50px;
+                background-color: #EEE;
+            }
+            
+            #container h1{
+                font-size: 48px;
+                font-family: sans-serif;
+                color: #0000A8;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="container">
+            
+        </div>
+        
+        <script type="text/babel">
+            ReactDOM.render(
+                <h1>Alex Dyla</h1>,
+                document.querySelector("#container")
+            );
+            
+        </script>
+
+    </body>
+</html>
