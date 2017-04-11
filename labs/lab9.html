@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <title>Google MDL Navigation Layout : Fixed Tabs </title>
+    <!-- Material Design Lite -->
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+   <link rel="stylesheet" 
+    href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.red-purple.min.css" /> 
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+      <style>
+        body{background:#eee;}
+        
+      </style>
+  <body>
+  <!-- Layout Container with Fixed Header and Tabs -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Header Title -->
+      <span class="mdl-layout-title">Shopping List App</span>
+    </div>
+    <!-- Tab Container with Tab links -->
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect"> 
+           <!-- class is-active to show currently active tab -->
+      <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Search</a>
+      <a href="#fixed-tab-2" class="mdl-layout__tab">Add</a>
+      <a href="#fixed-tab-3" class="mdl-layout__tab">About</a>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Header Title</span>
+  </div>
+  <main class="mdl-layout__content">
+    <!-- Tab 1 -->
+    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+      <div class="page-content">        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="search">
+            <label class="mdl-textfield__label" for="sample1">Search...</label>
+          </div>
+        </form>
+        <button class="mdl-button mdl-js-button mdl-button--raised" id="button2">
+          Button
+        </button>
+        </div>
+        <div><!--Holds results--></div>
+    </section>
+    
+    <!-- Tab 2 -->
+    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+      <div class="page-content"><!--Content Goes here-->
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="store">
+            <label class="mdl-textfield__label" for="store">Store...</label>
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="category">
+            <label class="mdl-textfield__label" for="category">Category...</label>
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="name">
+            <label class="mdl-textfield__label" for="name">Name...</label>
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="price">
+            <label class="mdl-textfield__label" for="price">Price...</label>
+          </div>
+        </form>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="quantity">
+            <label class="mdl-textfield__label" for="quantity">Quantity...</label>
+          </div>
+        </form>
+        <button class="mdl-button mdl-js-button mdl-button--raised" id="button1">
+          Save
+        </button>
+      </div>
+    </section>
+    
+    <!-- Tab 3 -->
+    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+      <div class="page-content"><!--Content Goes here--></div>
+    </section>
+    
+  </main>
+</div>
+
+
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> <!--jquery added-->
+<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>    <!-- dexie included -->
+
+<script>
+    // Define your database
+    //
+    var db = new Dexie("shopList_database");
+    db.version(1).stores({
+     shopList : ' ++id, store , category, name, price, quantity'
+    });
+    
+    $("#button1").on( "click", function() {
+        db.shopList.add({
+    	store: $("#store").val(),
+    	category: $("#category").val(),
+    	name: $("#name").val(),
+    	price:  $("#price").val(),
+    	quantity:  $("#quantity").val(),
+    	}).catch(function(error){
+    	    alert("The add to the database was unsucessful");
+        	});
+        });
+        
+      $("#button2").on("click", function() {
+        db.shopList.where("name").equalsIgnoreCase($("#search").val()).each(function (shopList){
+            console.log("Found: " + shopList.name);
+        });
+        
+        if ($("#search").val() == ''){
+            db.shopList.each(function(shopList) {
+                console.log(shopList);
+            });
+        }
+        
+      });
+    
+
+    
+</script>
+</body>
+
+
+</html>
