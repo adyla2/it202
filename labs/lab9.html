@@ -109,7 +109,7 @@
     });
     
     $("#button1").on( "click", function() {
-         if($("#store").val() == ''){
+      if($("#store").val() == ''){
         alert("Cannot add record without a store name!")
       };
       
@@ -119,14 +119,23 @@
     	name: $("#name").val(),
     	price:  $("#price").val(),
     	quantity:  $("#quantity").val(),
-    	}).catch(function(error){
-    	    alert("The add to the database was unsucessful");
-        	});
-        });
+    	}).then(function(){
+    	   $("#store").val('')
+    	   $("#category").val('');
+    	   $("#name").val('');
+    	   $("#price").val('');
+    	   $("#quantity").val('');
+    	   
+    	});
+    	
+    });
         
       $("#button2").on("click", function() {
         db.shopList.where("name").equalsIgnoreCase($("#search").val()).each(function (shopList){
-            alert("Found: " + shopList.name);
+            $( "#results" ).append("<p>Found: " + shopList.name +
+            "<p>Store: " + shopList.store + 
+            "<p>Price: " + shopList.price +
+            "<p>Quantity: " + shopList.quantity + "</p>");
         });
         
         if ($("#search").val() == ''){
@@ -141,15 +150,6 @@
         }
         
       });
-      //trying to delete records where no store name was given 
-     db.shopList
-    .where("store").equalsIgnoreCase(undefined)
-    .delete()
-    .then(function (deleteCount) {
-        console.log( "Deleted " + deleteCount + " objects");
-    });  
-
-    
 </script>
 </body>
 
