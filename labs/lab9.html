@@ -45,7 +45,7 @@
           Button
         </button>
         </div>
-        <div><!--Holds results--></div>
+        <div id="results"><!--Holds results--></div>
     </section>
     
     <!-- Tab 2 -->
@@ -109,7 +109,11 @@
     });
     
     $("#button1").on( "click", function() {
-        db.shopList.add({
+         if($("#store").val() == ''){
+        alert("Cannot add record without a store name!")
+      };
+      
+      db.shopList.add({
     	store: $("#store").val(),
     	category: $("#category").val(),
     	name: $("#name").val(),
@@ -122,17 +126,28 @@
         
       $("#button2").on("click", function() {
         db.shopList.where("name").equalsIgnoreCase($("#search").val()).each(function (shopList){
-            console.log("Found: " + shopList.name);
+            alert("Found: " + shopList.name);
         });
         
         if ($("#search").val() == ''){
             db.shopList.each(function(shopList) {
                 console.log(shopList);
+                $( "#results" ).append("<div>Store: "+ shopList.store + 
+                " Category: "+ shopList.category +
+                " Name: " + shopList.name + 
+                " Price: "+ shopList.price  + 
+                " Quantity: " + shopList.quantity + "</div>");
             });
         }
         
       });
-    
+      //trying to delete records where no store name was given 
+     db.shopList
+    .where("store").equalsIgnoreCase(undefined)
+    .delete()
+    .then(function (deleteCount) {
+        console.log( "Deleted " + deleteCount + " objects");
+    });  
 
     
 </script>
