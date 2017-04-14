@@ -413,7 +413,7 @@
         var search = $("#searchBox").val();
         //console.log("This is the search value: " + search);
         codeAddress(search);
-        search1(search, results);
+        search1(search, locationData);
       });
       
       var tempData= 0;    //hold temperature data for a particular place 
@@ -427,7 +427,10 @@
       var results1 = [];  //results from 0-999
       var results2 = [];   //results 1000-1979
       var geocoder, map;   //for google maps initializations 
-      var i;         
+      var i;
+      var years = {};
+      var myDate;
+      var myYear;
       
       
       //initializations for google maps api 
@@ -485,32 +488,69 @@
       
       //searches results array for the city input by the user 
       //does ajax call 
-      function search1(nameKey, myArray) {
-        //console.log("This is the name im looking for: "+ nameKey);
-        for (var i = 0; i < myArray.length; i++) {
-          if (myArray[i].name === nameKey) {
-            console.log("Is it getting here inside search for id: " + myArray[i].id);
-            citycode = myArray[i].id;
-            var url2 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&locationid="+ citycode + "&startdate=2001-01-01&enddate=2010-01-01&datatypeid=TAVG&limit=500";
-            //ajax call to the dataset for the specified city
-            $.ajax({
-              url: url2,
-              data: {},
-              headers: {
-                token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz'
-              }
-            }).done(function(data) {
-              console.log("Whats going on here: " + data);
-              $.each(data.results,function(k, value){
-                tempData += value.value
-              });
-              console.log(tempData);
-            });
+      // function search1(nameKey, myArray) {
+      //   for (var i = 0; i < myArray.length; i++) {
+      //     if (myArray[i].name === nameKey) {
+      //       console.log("Is it getting here inside search for id: " + myArray[i].id);
+      //       citycode = myArray[i].id;
+      //       var url2 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&locationid="+ citycode + "&startdate=2001-01-01&enddate=2010-01-01&datatypeid=TAVG&limit=500";
+      //       //ajax call to the dataset for the specified city 
+      //       $.ajax({
+      //         url: url2,
+      //         data: {},
+      //         headers: {
+      //           token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz'
+      //         }
+      //       }).done(function(data) {
+      //         console.log("Whats going on here: " + data);
+      //         $.each(data.results,function(k, value){
+      //           tempData += value.value
+      //         });
+      //         console.log(tempData);
+      //       });
             
-            return myArray[i];
-          }
+      //       return myArray[i];
+      //     }
+      //   }
+      // }
+      
+        function search1(nameKey, myArray) {
+          var myCity = myArray.find(function(obj){
+            return obj.name == nameKey;
+          });
+          
+          console.log(myCity.id);
+          
+          var url2 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&locationid=" + myCity.id + "&startdate=2001-01-02&enddate=2010-01-02&datatypeid=TAVG&limit=500";
+          //ajax call to the dataset for the specified city 
+          $.ajax({
+            url: url2,
+            data: {},
+            headers: {
+              token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz'
+            }
+          }).done(function(data) {
+            //console.log(data);
+            $.each(data.results, function(k, value) {
+              //get year 
+              //test object if year exists 
+              //update objects 
+              //else, create new object for that year 
+              myDate = new Date(value.date);    //this is the date 
+              myYear = myDate.getFullYear().toString();    //this is the year 
+              if(years[myYear]){
+                //if it is here we update 
+                years[myYear].sum += parseFloat(value.value);
+                years[myYear].count ++;
+                
+              }
+              else{
+                years[myYear] = {sum: parseFloat(value.value) , count: 1}
+              }
+            });
+           //console.log(years);
+          });
         }
-      }
       
       //uses geocode to find location and place marker 
       function codeAddress(address) {
@@ -521,7 +561,18 @@
           if (status === google.maps.GeocoderStatus.OK) {
             
             $("#searchBox").val('');
-            contentString = address + ":";
+            contentString = address + ": \n" +
+            "Yearly Temperature Averages: \n";
+            
+            console.log(years);
+            //try to implement in js and test 
+            $.each(years, function(k, value){
+              console.log("ksjdfjsdgf");
+              console.log(k);
+              contentString += k + ": " + ((value.sum)/(value.count));
+            });
+            //loop through years array
+            //;
             
             var infowindow = new google.maps.InfoWindow({
               content: contentString
