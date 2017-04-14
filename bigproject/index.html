@@ -1,106 +1,556 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-        <link rel="stylesheet" href="style.css">
-        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-    </head>
-    
-    
-    <body>
-                <!-- Simple header with fixed tabs. -->
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-                    mdl-layout--fixed-tabs">
-          <header class="mdl-layout__header">
-              
-              
-            <div class="mdl-layout__header-row">
-              <!-- Title -->
-              <span class="mdl-layout-title">Title</span>
-            </div>
-            
-            
-            <!-- Tabs -->
-            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
-              <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
-              <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
-              <a href="#fixed-tab-4" class="mdl-layout__tab">About Me</a>
-            </div>
-          </header>
-          
-          <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Title</span>
-          </div>
-          
-          <main class="mdl-layout__content">
-              
-            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-              <div class="page-content"><!-- Your content goes here --></div>
-            </section>
-            
-            <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-              <div class="page-content"><!-- Your content goes here --></div>
-            </section>
-            
-            <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-              <div class="page-content"><!-- Your content goes here --></div>
-            </section>
-        
 
- <!--       -------------------------        About Me Section          ------------------------------         -->
- 
-             <section class="mdl-layout__tab-panel" id="fixed-tab-4">
-              <div class="page-content mdl-grid">
-                <!--Content Here -->
-                    <!-- Github Page Card -->
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card">
-                        <div class="mdl-card__title" >Github Page</div>
-                        <div class="mdl-card__media">
-                            <img src="https://dwa5x7aod66zk.cloudfront.net/assets/pack/opengraph-image-c6d692948bb5fbf237b8a72d6576b4dcc84586335b522a6036904fc16ec7eccd.png" 
-                            width="100%"/>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue-green.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+</head>
+
+
+<body>
+  <!-- Simple header with fixed tabs. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                    mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+
+
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Fight Climate Change</span>
+      </div>
+
+<!--Having trouble with tabs running together when window size is small-->
+      <!-- Tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Map</a>
+        <a href="#fixed-tab-2" class="mdl-layout__tab">Fact Sheet</a>
+        <a href="#fixed-tab-3" class="mdl-layout__tab">Ways to Help</a>
+        <a href="#fixed-tab-4" class="mdl-layout__tab">About Me</a>
+      </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Directory</span>
+    </div>
+
+    <main class="mdl-layout__content">
+
+
+      <!-- SECTION 1 : Google Map API where selection of a region brings up historical temperature change data need search engine to find city and date-->
+<section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+  <div class="page-content mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+      <div>
+          <input list="cities" name="cities" id="searchBox">
+          <datalist id="cities">
+          </datalist>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="searchButton">
+            Search
+          </button>
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+</section>
+      <!-- SECTION 2: More changing weather facts --------------------------------------->
+      <!-- Data taken fro : http://nrc.noaa.gov/sites/nrc/Documents/SoS%20Fact%20Sheets/SoS_Fact_Sheet_Hurricanes_and_Climate_FINAL_May2012.pdf-->
+      <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+        <div class="page-content">
+          <!-- CONTENT HERE -->
+          <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+            <div class="mdl-cell mdl-cell--6-col">
+                <div class="needsmargin">
+                <p1>The GreenHouse Effect :</p1><br>
+                <p2>The greenhouse effect is unquestionably real and helps to regulate the temperature of our planet. 
+                It is essential for life on Earth and is one of Earth's natural processes. It is the result of heat absorption by certain gases in the atmosphere 
+                (called greenhouse gases because they effectively 'trap' heat in the lower 
+                atmosphere) and re-radiation downward of some of that heat. Water vapor is the most abundant greenhouse gas, 
+                followed by carbon dioxide and other trace gases. Without a natural greenhouse effect, the temperature of the Earth would be about zero degrees 
+                F (-18C) instead of its present 57F (14C). So, the concern is not with the fact that we have a greenhouse effect, but whether human activities are 
+                leading to an enhancement of the greenhouse effect by the emission of greenhouse gases through fossil fuel combustion and deforestation.</p2>
+                </div>
+                <div class="needsmargin">
+                  <p1>Increase of Greenhouse Gases :</p1><br>
+                  <p2>Human activity has been increasing the concentration of greenhouse gases in the atmosphere (mostly carbon dioxide from combustion of coal, 
+                  oil, and gas; plus a few other trace gases). There is no scientific debate on this point. Pre-industrial levels of carbon dioxide (prior to the 
+                  start of the Industrial Revolution) were about 280 parts per million by volume (ppmv), and current levels are greater than 380 ppmv and increasing 
+                  at a rate of 1.9 ppm yr-1 since 2000. The global concentration of CO2 in our atmosphere today far exceeds the natural range over the last 650,000 years 
+                  of 180 to 300 ppmv. According to the IPCC Special Report on Emission Scenarios (SRES), by the end of the 21st century,
+                  we could expect to see carbon dioxide concentrations of anywhere from 490 to 1260 ppm (75-350% above the pre-industrial concentration).</p2>
+                </div>
+                <div>
+                  <p1>Global Temperatures :</p1><br>
+                  <p2>Global surface temperatures have increased about 0.74C (plus or minus 0.18C) since the late–19th century, and the linear trend for the past 50 years of 0.13C 
+                  (plus or minus 0.03C) per decade is nearly twice that for the past 100 years. The warming has not been globally uniform. Some areas (including parts of the 
+                  southeastern U.S. and parts of the North Atlantic) have, in fact, cooled slightly over the last century. The recent warmth has been greatest over 
+                  North America and Eurasia between 40 and 70N. Lastly, seven of the eight warmest years on record have occurred since 2001 and the 10 warmest years 
+                  have all occurred since 1995. Recent analyses of temperature trends in the lower and mid- troposphere (between about 2,500 and 26,000 ft.) using both satellite and 
+                  radiosonde (weather balloon) data show warming rates that are similar to those observed for surface air temperatures. These warming rates are consistent with 
+                  their uncertainties and these analyses reconcile a discrepancy between warming rates noted on the IPCC Third Assessment Report (U.S. Climate Change Science 
+                  Plan Synthesis and Assessment Report 1.1).</p2><br>
+                  <p2>An enhanced greenhouse effect is expected to cause cooling in higher parts of the atmosphere because the increased "blanketing" effect in the lower atmosphere 
+                  holds in more heat, allowing less to reach the upper atmosphere.Cooling of the lower stratosphere (about 49,000-79,500 ft.) since 1979 is shown by 
+                  both satellite Microwave Sounding Unit and radiosonde data (see previous figure), but is larger in the radiosonde data likely due to uncorrected
+                  errors in the radiosonde data.Relatively cool surface and tropospheric temperatures, and a relatively warmer lower stratosphere, were observed in 
+                  1992 and 1993, following the 1991 eruption of Mt. Pinatubo. The warming reappeared in 1994. A dramatic global warming, at least partly associated 
+                  with the record El Nino, took place in 1998. This warming episode is reflected from the surface to the top of the troposphere.</p2>
+                  <p2>There has been a general, but not global, tendency toward reduced diurnal temperature range (DTR: the difference between daily high or maximum and daily 
+                  low or minimum temperatures) over about 70% of the global land mass since the middle of the 20th century. However, for the period 1979-2005 the DTR shows no trend 
+                  since the trend in both maximum and minimum temperatures for the same period are virtually identical; both showing a strong warming signal. A variety of factors likely 
+                  contribute to this change in DTR, particularly on a regional and local basis, including changes in cloud cover, atmospheric water vapor, land use and urban effects.</p2>
+                </div>
+            </div>
+          </div>
+            
+            
+            
+            
+            <div  class="mdl-cell mdl-cell--6-col">
+              <div class="mdl-card demo-layout-transparent mdl-layout mdl-js-layout" id="helpful_tips">
+              <div class="needsmargin">
+                <p1>Rising Sea Level :</p1><br>
+                <p2>Global mean sea level has been rising at an average rate of 1.7 mm/year (plus or minus 0.5mm) over the past 100 years, which is significantly larger than the 
+                rate averaged over the last several thousand years. Depending on which greenhouse gas increase scenario is used (high or low) projected sea-level rise is projected to 
+                be anywhere from 0.18 (low greenhouse gas increase) to 0.59 meters for the highest greenhouse gas increase scenario. However, this increase is due mainly to thermal 
+                expansion and contributions from melting alpine glaciers, and does not include any potential contributions from melting ice sheets in Greenland or Antarctica. Larger 
+                increases cannot be excluded but our current understanding of ice sheet dynamics renders uncertainties too large to be able to assess the likelihood of large-scale 
+                melting of these ice sheets.
+                </p2>
+              </div>
+              <div class="needsmargin">
+                <p1>Future Climate Projections :</p1><br>
+                <p2>
+                  Due to the enormous complexity of the atmosphere, the most useful tools for gauging future changes are 'climate models'. These are computer-based 
+                  mathematical models which simulate, in three dimensions, the climate's behavior, its components and their interactions. Climate models are constantly 
+                  improving based on both our understanding and the increase in computer power, though by definition, a computer model is a simplification and simulation
+                  of reality, meaning that it is an approximation of the climate system. The first step in any modeled projection of climate change is to first simulate 
+                  the present climate and compare it to observations. If the model is considered to do a good job at representing modern climate, then certain parameters
+                  can be changed, such as the concentration of greenhouse gases, which helps us understand how the climate would change in response. Projections of 
+                  future climate change therefore depend on how well the computer climate model simulates the climate and on our understanding of how forcing functions 
+                  will change in the future.The IPCC Special Report on Emission Scenarios determines the range of future possible greenhouse gas concentrations 
+                  (and other forcings) based on considerations such as population growth, economic growth, energy efficiency and a host of other factors. This leads 
+                  a wide range of possible forcing scenarios, and consequently a wide range of possible future climates.According to the range of possible forcing 
+                  scenarios, and taking into account uncertainty in climate model performance, the IPCC projects a best estimate of global temperature increase of 
+                  1.8 - 4.0°C with a possible range of 1.1 - 6.4°C by 2100, depending on which emissions scenario is used. However, this global average will integrate
+                  widely varying regional responses, such as the likelihood that land areas will warm much faster than ocean temperatures, particularly those land 
+                  areas in northern high latitudes (and mostly in the cold season). Additionally, it is very likely that heat waves and other hot extremes will increase.
+                </p2>
+              </div>
+              <div class="needsmargin">
+                <p1>Climate Variability and Extremes :</p1><br>
+                <p2>
+                  Examination of changes in climate extremes requires long-term daily or even hourly data sets which until recently have been scarce for many parts 
+                  of the globe. However these data sets have become more widely available allowing research into changes in temperature and precipitation extremes 
+                  on global and regional scales. Global changes in temperature extremes include decreases in the number of unusually cold days and nights and 
+                  increases in the number of unusually warm days and nights. Other observed changes include lengthening of the growing season, and decreases in 
+                  the number of frost days. Global temperature extremes have been found to exhibit no significant trend in interannual variability, 
+                  but several studies suggest a significant decrease in intra-annual variability. There has been a clear trend to fewer extremely 
+                  low minimum temperatures in several widely-separated areas in recent decades. Widespread significant changes in extreme high temperature
+                  events have not been observed. There is some indication of a decrease in day-to-day temperature variability in recent decades.
+                </p2>
+              </div>
+              <div>
+                <p1>Thank You</p1>
+                I want to thank National Centers for Environmental Information for proiding the detailed description of globals warming factors. If you would like to read 
+                more please visit their website, where they have the information provided here, as well as so much more. <a href="https://www.ncdc.noaa.gov/">Click here to visit NOAA website.</a>
+              </div>
+            </div>
+            </div>
+            
+            
+         
+        </div>
+      </section>
+      <!-- SECTION 3: CREATION OF YOUR OWN LIST SPECIFIC TO YOUR LIFESTYLE to reduce YOUR carbon footprint and Info   -->
+      <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+        <div class="page-content mdl-grid">
+
+          <!-- This card is for making personal list for changing your own lifestyle-->
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-card" id="helpful_tips">
+              <div class="mdl-card__title">Make Your Own List to Reduce Your Carbon Footprint</div>
+              <div class="mdl-card__media">
+                <img height="652px" src="img/earth1.jpeg" width="100%" />
+              </div>
+              <div class="mdl-card__supporting-text">
+                <p style="font-size: 18px">Here you can create your own checklist, of ways you can reduce YOUR carbon footprint. This list should be customized to your lifestyle.</p>
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable" width=100%>
+                  <thead>
+                    <tr>
+                      <th class="mdl-data-table__cell--non-numeric" style="font-size:18px">To Do</th>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="mdl-data-table__cell--non-numeric">
+                        <!-- Add user input text box here -->
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="text" id="sample1">
                         </div>
-                        <div class="mdl-card__supporting-text">
-                            <p>If you would like to follow me on Github or just check out some of the projects I've done. 
-                            Click <a href="https://github.com/adyla2/it202"> here</a> for my Github for IT_202.</p>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td class="mdl-data-table__cell--non-numeric">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="text" id="sample2">
                         </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td class="mdl-data-table__cell--non-numeric">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="text" id="sample3">
                         </div>
-                    </div>
-                    
-                    <!-- About Me Card-->
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card">
-                            <div class="mdl-card__title">About Me</div>
-                            <div class="mdl-card__media">
-                                <img src="img/me.png" width="100%"/>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                <p>My name is Alexandra Dyla, and I'm currently a student at the University of Illinois Chicago. 
-                                I've been working toward my degree in Computer Engineering. 
-                                Some of my interests include computer architecture, networking, and computer systems.</p>
-                            </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td class="mdl-data-table__cell--non-numeric">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="text" id="sample4">
                         </div>
-                    </div>
-                    
-                    <!-- Contact Info Card-->
-                    <div class="mdl-cell mdl-cell--4-col mdl-card">
-                        <div class="mdl-card">
-                            <div class="mdl-card__title">Contact Information</div>
-                            <div class="mdl-card__media">
-                                <img src="img/Email.ico" width="100%"/>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                <p>Please feel free to email with questions at <a href="mailto:adyla2@uic.edu">adyla2@uic.edu.</p>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td class="mdl-data-table__cell--non-numeric">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="text" id="sample5">
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td class="mdl-data-table__cell--non-numeric">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                          <input class="mdl-textfield__input" type="text" id="sample6">
+                        </div>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p id="button">
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="saveList">
+                              SAVE THIS LIST 
+                            </button>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!--This card lists helpful ways to help with global warming-->
+          <!-- http://www.livescience.com/topics/global-warming -->
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-card" id="helpful_tips">
+              <div class="mdl-card__title">Here are Some Ways to Help Global Warming</div>
+              <div class="mdl-card__media">
+                <img src="img/ice.jpg" width="100%" height="652px" />
+              </div>
+              <div class="mdl-card__supporting-text">
+                <p style="font-size: 18px">Global warming is the term used to describe a gradual increase in the average temperature of the Earth's atmosphere and its oceans, a change that is believed to be permanently changing the Earth’s climate.</p>
+                <!--   Begin List of Ways to Reduce Global Warming  -->
+                <!-- http://homeguides.sfgate.com/top-ways-stop-global-warming-78809.html -->
+                <ul class="demo-list-three mdl-list">
+                  <!--Helpful TIP #1-->
+                  <li>
+                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons">star</i>
+                                      <span id="list_title">Reduce Fossil Fuel Use</span>
+                    <span class="mdl-list__item-text-body">
+                                        <p>There are two ways to reduce fossil fuel use: Use less energy, or use alternative, nonpolluting energy sources like solar and wind power.  
+                                        At home, this translates to saving electricity by using energy-efficient appliances and compact fluorescent light bulbs, 
+                                        as well as reducing gasoline use and buying green power from your electricity provider, if available.</p>
+                                      </span>
+                    </span>
+                  </li>
+                  <!--Helpful Tip #2-->
+                  <li>
+                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons">star</i>
+                                      <span id="list_title">Plant Trees</span>
+                    <span class="mdl-list__item-text-body">
+                                        <p>Because carbon dioxide is the most important greenhouse gas, planting trees and other plants can slow or stop global warming.
+                                        Deforestation of rain forests is a large contributor to global warming and CO2 emissions, but planting new trees, even in your own backyard, 
+                                        can help to offset this.</p>
+                                      </span>
+                    </span>
+                  </li>
+
+                  <!--Helpful Tip #3-->
+                  <li>
+                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons">star</i>
+                                      <span id="list_title">Reduce Waste</span>
+                    <span class="mdl-list__item-text-body">
+                                        <p>Decomposing waste in landfills produces methane and other greenhouse gases. Waste also requires energy to manufacture in the first place. 
+                                        Reducing your consumption patterns and reusing items whenever possible minimizes your carbon footprint, since fewer new items need to be made. 
+                                        Recycling metal, plastic, glass and paper lowers greenhouse gas emissions, since recycled items take far less energy to manufacture than items produced from scratch.</p>
+                                      </span>
+                    </span>
+                  </li>
+                  <!--Helpful Tip #4-->
+                  <li>
+                    <span class="mdl-list__item-primary-content">
+                                      <i class="material-icons">star</i>
+                                      <span id="list_title">Conserve Water</span>
+                    <span class="mdl-list__item-text-body">
+                                        <p>Cities consume significant amounts of energy when purifying and distributing water, which contributes to greenhouse gas emissions. 
+                                        Saving water reduces the amount of energy used. At home, turn off water immediately whenever you're not using it, and repair or replace leaky faucets and toilets. 
+                                        In your yard, landscape with plants and grasses that require less water, and capture rainwater in barrels for irrigating.</p>
+                                      </span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!--       -------------------------        About Me Section          ------------------------------         -->
+
+      <section class="mdl-layout__tab-panel" id="fixed-tab-4">
+        <div class="page-content mdl-grid">
+
+          <!-- Github Page Card -->
+          <div class="mdl-cell mdl-cell--4-col">
+            <div class="mdl-card">
+              <div class="mdl-card__title">Github Page</div>
+              <div class="mdl-card__media">
+                <img src="img/github-student.jpg" width="100%" />
+              </div>
+              <div class="mdl-card__supporting-text">
+                <p>If you would like to follow me on Github or just check out some of the projects I've done. Click <a href="https://github.com/adyla2/it202"> here</a> for my Github for IT_202.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Me Card-->
+          <div class="mdl-cell mdl-cell--4-col">
+            <div class="mdl-card">
+              <div class="mdl-card__title">About Me</div>
+              <div class="mdl-card__media">
+                <img src="img/me.png" width="100%" />
+              </div>
+              <div class="mdl-card__supporting-text">
+                <p>My name is Alexandra Dyla, and I'm currently a student at the University of Illinois Chicago. I've been working toward my degree in Computer Engineering. My expected graduation is May 2017. Some of my interests include computer architecture,
+                  networking, and computer systems.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Info Card-->
+          <div class="mdl-cell mdl-cell--4-col mdl-card">
+            <div class="mdl-card">
+              <div class="mdl-card__title">Contact Information</div>
+              <div class="mdl-card__media">
+                <img src="img/Email.ico" width="100%" />
+              </div>
+              <div class="mdl-card__supporting-text">
+                <p>Please feel free to email with questions at <a href="mailto:adyla2@uic.edu">adyla2@uic.edu.</p>
                             </div>
                         </div>
                     </div>
               </div>
             </section>
+<!-- ----------------------------------------    END OF ABOUT ME      ------------------------------------------- -->
+            
   </main>
 </div>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> <!--jquery added-->
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>    <!-- dexie included -->
+    <script src="locations.js"></script>
+    <script>
+    
+          // Define your database
+    //
+    var db = new Dexie("list_database");
+    db.version(1).stores({
+     list : '++id, item1, item2, item3, item4, item5, item6'
+    });
+    
+    
+    //on button press, save list, saves the items you've entered 
+    //if sucessfully added to DB then clear text field 
+      $("#saveList").on( "click", function() {
+         db.list.add({
+        	item1: $("#sample1").val(),
+        	item2: $("#sample2").val(),
+        	item3: $("#sample3").val(),
+        	item4: $("#sample4").val(),
+        	item5: $("#sample5").val(),
+        	item6: $("#sample5").val(),
+        	}).then(function(){
+        	   $("#sample1").val('')
+        	   $("#sample2").val('');
+        	   $("#sample3").val('');
+        	   $("#sample4").val('');
+        	   $("#sample5").val('');
+        	   $("#sample6").val('');
+        	});
+      });
+      
+      //if a check box is selected remove from DB
+      
+    </script>
+    <script>
+      $("#searchButton").on( "click", function() {
+        var search = $("#searchBox").val();
+        //console.log("This is the search value: " + search);
+        codeAddress(search);
+        search1(search, results);
+      });
+      
+      var tempData= 0;    //hold temperature data for a particular place 
+      var contentString;  //holds data for click-able markers 
+      var placeData=[];   //city name and id 
+      var citycode;       //citycode to concat to ajax call for average temp data 
+      var places = [];    //places = all location data available 
+      var places1 =[];    //holds places data records 0-999
+      var places2 =[];    //holds places data records 1000-1979
+      var results = [];   //holds all results from 1980 locations 
+      var results1 = [];  //results from 0-999
+      var results2 = [];   //results 1000-1979
+      var geocoder, map;   //for google maps initializations 
+      var i;         
+      
+      
+      //initializations for google maps api 
+      function initMap (){
+        geocoder = new google.maps.Geocoder();
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 2,
+          center: {lat:19.8781 , lng:7.6298 },
+          mapTypeId: 'terrain'
+      }); 
+      
+      // var url1 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?locationcategoryid=CITY&sortfield=name&sortorder=asc&limit=1000";
+      // //this call gets first 1000 results 
+      //   $.ajax({ 
+      //     url:url1,
+      //     data:{
+      //     }, 
+      //     headers:{ token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz' } }
+      //   ).done(function(data) {
+      //     results1 = data.results;
+      //     for(i=0; i<results1.length; i++){
+      //         places1[i] = [results1[i].name, results1[i].id];
+      //         $( "#cities" ).append('<option value="'+results1[i].name +'">'
+      //         +results1[i].id + "</option>");
+      //     }
+      //   });
+      
+      //link js locationData file 
+      
+      $.each(locationData, function(i, v){
+         $( "#cities" ).append('<option value="'+ v.name +'">'
+          +v.id + "</option>");
+      });
+        
+      // var url3= "https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?locationcategoryid=CITY&sortfield=name&sortorder=asc&limit=1000&offset=1001";
+      //   //this call gets last 980 records ....this api only allows for 1000 records to be grabbed at a time, and there are 1980 records, 2 calls needed 
+      //   $.ajax({ 
+      //     url:url3,
+      //     data:{
+      //     }, 
+      //     headers:{ token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz' } }
+      //   ).done(function(data) {
+      //     results2 = data.results;
+      //     for(i=0; i<results2.length; i++){
+      //       places2[i]=[results2[i].name, results2[i].id];
+      //       $( "#cities" ).append('<option value="'+results2[i].name +'">'
+      //         +results2[i].id + "</option>");
+            
+      //     }
+      //     places = places1.concat(places2);
+      //     results = results1.concat(results2);
+      //   });
+        };
 
+      
+      //searches results array for the city input by the user 
+      //does ajax call 
+      function search1(nameKey, myArray) {
+        //console.log("This is the name im looking for: "+ nameKey);
+        for (var i = 0; i < myArray.length; i++) {
+          if (myArray[i].name === nameKey) {
+            console.log("Is it getting here inside search for id: " + myArray[i].id);
+            citycode = myArray[i].id;
+            var url2 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&locationid="+ citycode + "&startdate=2001-01-01&enddate=2010-01-01&datatypeid=TAVG&limit=500";
+            //ajax call to the dataset for the specified city
+            $.ajax({
+              url: url2,
+              data: {},
+              headers: {
+                token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz'
+              }
+            }).done(function(data) {
+              console.log("Whats going on here: " + data);
+              $.each(data.results,function(k, value){
+                tempData += value.value
+              });
+              console.log(tempData);
+            });
+            
+            return myArray[i];
+          }
+        }
+      }
+      
+      //uses geocode to find location and place marker 
+      function codeAddress(address) {
+        geocoder.geocode({
+          'address': address
+        }, function(results, status) {
+          //console.log("Whats being passed in here?" +  address);
+          if (status === google.maps.GeocoderStatus.OK) {
+            
+            $("#searchBox").val('');
+            contentString = address + ":";
+            
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
+            
+            
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+            });
+            
+            marker.addListener('click', function() {
+              infowindow.open(map, marker);
+            });
+          }
+          else {
+            alert('City NOT recognized.');
+          }
+        });
+      }
+      
+      
+
+    </script>
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHPfpisryAI8Evjoc1qesN_Uqm-_fb_qU&callback=initMap"
+    type="text/javascript"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    
     </body>
 </html>

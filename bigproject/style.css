@@ -1,5 +1,6 @@
 .mdl-card__title {
     font-size: 24px;
+    font-style: italic;
 }
 
 .mdl-card__supporting-text {
@@ -14,14 +15,77 @@
     
 }
 
-.p{
+.mdl-textfield--floating-label{
+    width: 100%;
+}
+
+.demo-layout-transparent {
+  background: url('https://cdn-img.fimfiction.net/story/aomu-1432496085-119167-full') center / cover;
+}
+.demo-layout-transparent ,
+.demo-layout-transparent{
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+.needsmargin{
+    margin-bottom: 50px;
+}
+
+p {
     font-size: 14px; 
     font-family: Arial; 
     font-weight: bold; 
     color: #000;
 }
 
-.a{
-    display: table;
-    
+p1{
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: bolder;
 }
+
+p2{
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+#list_title {
+    font-size: 24px;
+    font-family: Arial;
+    font-weight: bold;
+    color: #000;
+}
+
+#helpful_tips{
+    width: 100%;
+    height: 100%;
+}
+
+#map {
+    margin-top: 25px;
+    min-height: 500px;
+
+}
+
+#searchBox{
+    height: 40px;
+    width: 200px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#searchButton{
+    font-weight: lighter;
+    color: #ef3c42;
+    position: relative;
+}
+
+
+
+
+
+    
+
+
