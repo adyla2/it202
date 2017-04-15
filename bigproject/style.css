@@ -20,35 +20,39 @@
 }
 
 .demo-layout-transparent {
-  background: url('https://cdn-img.fimfiction.net/story/aomu-1432496085-119167-full') center / cover;
+  background: url('img/dark_earth.jpg') center / cover;
 }
-.demo-layout-transparent ,
-.demo-layout-transparent{
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
   /* This background is dark, so we set text to white. Use 87% black instead if
      your background is light. */
   color: white;
 }
 
+
 .needsmargin{
-    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 p {
     font-size: 14px; 
-    font-family: Arial; 
-    font-weight: bold; 
+    font-family: Arial;
     color: #000;
 }
 
-p1{
-    font-size: 24px;
-    font-family: sans-serif;
-    font-weight: bolder;
+#leftmargin{
+    margin-left: 25px;
 }
 
-p2{
-    font-size: 14px;
+#colorchange{
+    color: #FFF;
+}
+
+#text{
+    font-size: 18px;
     font-family: sans-serif;
+    font-weight: bolder;
+    color: #FFF;
 }
 
 #list_title {
