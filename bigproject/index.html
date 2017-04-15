@@ -347,7 +347,9 @@
                 <img src="img/me.png" width="100%" />
               </div>
               <div class="mdl-card__supporting-text">
-                <p>My name is Alexandra Dyla, and I'm currently a student at the University of Illinois Chicago. I've been working toward my degree in Computer Engineering. My expected graduation is May 2017. Some of my interests include computer architecture,
+                <p>My name is Alexandra Dyla, and I'm currently a student at the University of Illinois Chicago. 
+                I've been working toward my degree in Computer Engineering. My expected graduation is May 2017. 
+                Some of my interests include computer architecture,
                   networking, and computer systems.</p>
               </div>
             </div>
@@ -410,27 +412,22 @@
     </script>
     <script>
       $("#searchButton").on( "click", function() {
-        var search = $("#searchBox").val();
+        search = $("#searchBox").val();
         //console.log("This is the search value: " + search);
-        codeAddress(search);
+        //codeAddress(search);
         search1(search, locationData);
       });
       
       var tempData= 0;    //hold temperature data for a particular place 
       var contentString;  //holds data for click-able markers 
-      var placeData=[];   //city name and id 
       var citycode;       //citycode to concat to ajax call for average temp data 
-      var places = [];    //places = all location data available 
-      var places1 =[];    //holds places data records 0-999
-      var places2 =[];    //holds places data records 1000-1979
       var results = [];   //holds all results from 1980 locations 
-      var results1 = [];  //results from 0-999
-      var results2 = [];   //results 1000-1979
       var geocoder, map;   //for google maps initializations 
       var i;
       var years = {};
       var myDate;
       var myYear;
+      var search;
       
       
       //initializations for google maps api 
@@ -442,86 +439,23 @@
           mapTypeId: 'terrain'
       }); 
       
-      // var url1 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?locationcategoryid=CITY&sortfield=name&sortorder=asc&limit=1000";
-      // //this call gets first 1000 results 
-      //   $.ajax({ 
-      //     url:url1,
-      //     data:{
-      //     }, 
-      //     headers:{ token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz' } }
-      //   ).done(function(data) {
-      //     results1 = data.results;
-      //     for(i=0; i<results1.length; i++){
-      //         places1[i] = [results1[i].name, results1[i].id];
-      //         $( "#cities" ).append('<option value="'+results1[i].name +'">'
-      //         +results1[i].id + "</option>");
-      //     }
-      //   });
-      
-      //link js locationData file 
+
       
       $.each(locationData, function(i, v){
          $( "#cities" ).append('<option value="'+ v.name +'">'
           +v.id + "</option>");
       });
-        
-      // var url3= "https://www.ncdc.noaa.gov/cdo-web/api/v2/locations?locationcategoryid=CITY&sortfield=name&sortorder=asc&limit=1000&offset=1001";
-      //   //this call gets last 980 records ....this api only allows for 1000 records to be grabbed at a time, and there are 1980 records, 2 calls needed 
-      //   $.ajax({ 
-      //     url:url3,
-      //     data:{
-      //     }, 
-      //     headers:{ token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz' } }
-      //   ).done(function(data) {
-      //     results2 = data.results;
-      //     for(i=0; i<results2.length; i++){
-      //       places2[i]=[results2[i].name, results2[i].id];
-      //       $( "#cities" ).append('<option value="'+results2[i].name +'">'
-      //         +results2[i].id + "</option>");
-            
-      //     }
-      //     places = places1.concat(places2);
-      //     results = results1.concat(results2);
-      //   });
         };
 
-      
-      //searches results array for the city input by the user 
-      //does ajax call 
-      // function search1(nameKey, myArray) {
-      //   for (var i = 0; i < myArray.length; i++) {
-      //     if (myArray[i].name === nameKey) {
-      //       console.log("Is it getting here inside search for id: " + myArray[i].id);
-      //       citycode = myArray[i].id;
-      //       var url2 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&locationid="+ citycode + "&startdate=2001-01-01&enddate=2010-01-01&datatypeid=TAVG&limit=500";
-      //       //ajax call to the dataset for the specified city 
-      //       $.ajax({
-      //         url: url2,
-      //         data: {},
-      //         headers: {
-      //           token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz'
-      //         }
-      //       }).done(function(data) {
-      //         console.log("Whats going on here: " + data);
-      //         $.each(data.results,function(k, value){
-      //           tempData += value.value
-      //         });
-      //         console.log(tempData);
-      //       });
-            
-      //       return myArray[i];
-      //     }
-      //   }
-      // }
       
         function search1(nameKey, myArray) {
           var myCity = myArray.find(function(obj){
             return obj.name == nameKey;
           });
           
-          console.log(myCity.id);
+          //console.log(myCity.id);
           
-          var url2 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&locationid=" + myCity.id + "&startdate=2001-01-02&enddate=2010-01-02&datatypeid=TAVG&limit=500";
+          var url2 = "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOM&locationid=" + myCity.id + "&startdate=2001-01-02&enddate=2010-01-02&datatypeid=TAVG&limit=700";
           //ajax call to the dataset for the specified city 
           $.ajax({
             url: url2,
@@ -530,7 +464,6 @@
               token: 'VokiKDjKShlWoaiDtyUEkFGwfqTPOLIz'
             }
           }).done(function(data) {
-            //console.log(data);
             $.each(data.results, function(k, value) {
               //get year 
               //test object if year exists 
@@ -548,7 +481,9 @@
                 years[myYear] = {sum: parseFloat(value.value) , count: 1}
               }
             });
-           //console.log(years);
+            //async operations, need to call geocode from here so that object has items in it 
+            //this causes the tag to show up with a little delay 
+            codeAddress(search);
           });
         }
       
@@ -557,22 +492,17 @@
         geocoder.geocode({
           'address': address
         }, function(results, status) {
-          //console.log("Whats being passed in here?" +  address);
           if (status === google.maps.GeocoderStatus.OK) {
             
             $("#searchBox").val('');
-            contentString = address + ": \n" +
-            "Yearly Temperature Averages: \n";
+            contentString = address + ": " + "<br>" +
+            "Yearly Temperature Averages: " + "<br>" ;
             
-            console.log(years);
-            //try to implement in js and test 
             $.each(years, function(k, value){
               console.log("ksjdfjsdgf");
               console.log(k);
-              contentString += k + ": " + ((value.sum)/(value.count));
+              contentString += k + ": " + ((value.sum)/(value.count)) + " C"  +"<br>";
             });
-            //loop through years array
-            //;
             
             var infowindow = new google.maps.InfoWindow({
               content: contentString
@@ -594,8 +524,6 @@
           }
         });
       }
-      
-      
 
     </script>
     
