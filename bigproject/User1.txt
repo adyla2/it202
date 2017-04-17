@@ -17,3 +17,8 @@ Other than the waiting on markers, everything was straight forward.
 4. Is it exciting and motivating to use the app?
 
 It was alright. Not personally the topic I would be interested in. 
+
+5. Any feedback:
+
+More visual would be nice, seeing more drastic changes with more years worth of data. Fix lag problems with marker placement, 
+there were times I thought it wasnt working because of the wait time. 
